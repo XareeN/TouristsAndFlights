@@ -1,0 +1,24 @@
+{
+  "name": "treative",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XareeN/TouristsAndFlights.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XareeN/TouristsAndFlights/issues"
+  },
+  "homepage": "https://github.com/XareeN/TouristsAndFlights#readme",
+  "dependencies": {
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-router-dom": "^5.1.2"
+  }
+}

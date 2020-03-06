@@ -2,9 +2,6 @@ package com.treative.treative.model;
 
 import org.springframework.data.annotation.Id;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 public class Flight {
 
     @Id
@@ -12,17 +9,17 @@ public class Flight {
     private String departure;
     private String arrival;
     private int seatCount;
-    private int touristCount;
+    private String touristList;
     private double ticketPrice;
 
     public Flight() {
     }
 
-    public Flight(String departure, String arrival, int seatCount, int touristCount, double ticketPrice) {
+    public Flight(String departure, String arrival, int seatCount, String touristList, double ticketPrice) {
         this.departure = departure;
         this.arrival = arrival;
         this.seatCount = seatCount;
-        this.touristCount = touristCount;
+        this.touristList = touristList;
         this.ticketPrice = ticketPrice;
     }
 
@@ -58,12 +55,12 @@ public class Flight {
         this.seatCount = seatCount;
     }
 
-    public int getTouristCount() {
-        return touristCount;
+    public String getTouristList() {
+        return touristList;
     }
 
-    public void setTouristCount(int touristCount) {
-        this.touristCount = touristCount;
+    public void setTouristList(String touristList) {
+        this.touristList = touristList;
     }
 
     public double getTicketPrice() {

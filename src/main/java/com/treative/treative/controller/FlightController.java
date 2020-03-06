@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -25,16 +26,38 @@ public class FlightController {
     }
 
     @PostMapping("/addFlight")
-    public void addFlight(){
+    public ResponseEntity<Flight> addFlight(){
+
+//        String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";
+//        StringBuilder builder = new StringBuilder(2);
+//        int y;
+//        for (y = 0; y < 2; y++){
+//            int index = (int)(s.length()*Math.random());
+//            builder.append(s.charAt(index));
+//        }
+//        String randomString = builder.toString();
+
         Flight flight = new Flight(
                 "2020-03-06T00:00:00",
                 "2020-03-13T00:00:00",
-                10,
-                5,
+                11,
+                null,
                 50.00
         );
         flightService.saveFlight(flight);
-//        return ResponseEntity.ok("OK");
+        return ResponseEntity.ok(flight);
+    }
+
+    @PostMapping("/deleteFlight")
+    public ResponseEntity<List<Flight>> deleteFlight(@RequestBody String idToDelete){
+        List<Flight> flights = flightService.deleteFlight(idToDelete);
+        return ResponseEntity.ok(flights);
+    }
+
+    @PutMapping("/flights/{id}")
+    public ResponseEntity<Flight> updateFlight(@RequestBody Flight flight, @PathVariable String id){
+        flightService.updateFlight(flight, id);
+        return null;
     }
 
 

@@ -38,5 +38,17 @@ public class TouristController {
         return ResponseEntity.ok(tourist1);
     }
 
+    @PostMapping("/deleteTourist")
+    public ResponseEntity<List<Tourist>> deleteTourist(@RequestBody String idToDelete){
+        List<Tourist> tourists = touristService.deleteTourist(idToDelete);
+        return ResponseEntity.ok(tourists);
+    }
+
+    @PutMapping("/tourists/{id}")
+    public ResponseEntity<Tourist> updateTourist(@RequestBody Tourist tourist, @PathVariable String id){
+        touristService.updateTourist(tourist, id);
+        return null;
+    }
+
 
 }
