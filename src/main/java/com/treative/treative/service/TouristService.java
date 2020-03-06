@@ -9,6 +9,11 @@ import java.util.List;
 @Repository
 public interface TouristService {
     List<Tourist> getTouristByType(String filterType, String filterValue);
+
+    List<Tourist> getTouristByAnything(String text);
+
+    Tourist getTouristById(String id);
+
     Tourist saveTourist(Tourist tourist);
 
     List<Tourist> deleteTourist(String idToDelete);

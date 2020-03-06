@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -25,9 +24,8 @@ public class FlightController {
         return ResponseEntity.ok(allFlights);
     }
 
-    @PostMapping("/addFlight")
-    public ResponseEntity<Flight> addFlight(){
-
+    @PostMapping(value = "/addFlight", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Flight> addFlight(@RequestBody Flight flight){
 //        String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";
 //        StringBuilder builder = new StringBuilder(2);
 //        int y;
@@ -37,13 +35,13 @@ public class FlightController {
 //        }
 //        String randomString = builder.toString();
 
-        Flight flight = new Flight(
-                "2020-03-06T00:00:00",
-                "2020-03-13T00:00:00",
-                11,
-                null,
-                50.00
-        );
+//        Flight flight = new Flight(
+//                "2020-03-06T00:00:00",
+//                "2020-03-13T00:00:00",
+//                11,
+//                Collections.singletonList(null),
+//                50.00
+//        );
         flightService.saveFlight(flight);
         return ResponseEntity.ok(flight);
     }

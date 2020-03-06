@@ -2,6 +2,8 @@ package com.treative.treative.model;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 public class Flight {
 
     @Id
@@ -9,13 +11,13 @@ public class Flight {
     private String departure;
     private String arrival;
     private int seatCount;
-    private String touristList;
+    private List<Tourist> touristList;
     private double ticketPrice;
 
     public Flight() {
     }
 
-    public Flight(String departure, String arrival, int seatCount, String touristList, double ticketPrice) {
+    public Flight(String departure, String arrival, int seatCount, List<Tourist> touristList, double ticketPrice) {
         this.departure = departure;
         this.arrival = arrival;
         this.seatCount = seatCount;
@@ -55,11 +57,11 @@ public class Flight {
         this.seatCount = seatCount;
     }
 
-    public String getTouristList() {
+    public List<Tourist> getTouristList() {
         return touristList;
     }
 
-    public void setTouristList(String touristList) {
+    public void setTouristList(List<Tourist> touristList) {
         this.touristList = touristList;
     }
 

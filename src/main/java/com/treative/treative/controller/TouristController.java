@@ -20,22 +20,22 @@ public class TouristController {
             @RequestParam(value = "filterType", required = false) String filterType,
             @RequestParam(value = "filterValue", required = false) String filterValue
     ){
-        List<Tourist> allTourists = touristService.getTouristByType(filterType, filterValue);
-        return ResponseEntity.ok(allTourists);
+        List<Tourist> touristResult = touristService.getTouristByType(filterType, filterValue);
+        return ResponseEntity.ok(touristResult);
     }
 
-    @PostMapping("/addTourist")
-    public ResponseEntity<Tourist> addTourist(){
-        Tourist tourist1 = new Tourist(
-                "Jason",
-                "Bourne",
-                "MALE",
-                "Great Britain",
-                "",
-                "1980-12-12T00:00:00.000"
-        );
-        touristService.saveTourist(tourist1);
-        return ResponseEntity.ok(tourist1);
+    @PostMapping(value = "/addTourist", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Tourist> addTourist(@RequestBody Tourist tourist){
+//        Tourist tourist1 = new Tourist(
+//                "Jason",
+//                "Bourne",
+//                "MALE",
+//                "Great Britain",
+//                "",
+//                "1980-12-12T00:00:00.000"
+//        );
+        touristService.saveTourist(tourist);
+        return ResponseEntity.ok(tourist);
     }
 
     @PostMapping("/deleteTourist")

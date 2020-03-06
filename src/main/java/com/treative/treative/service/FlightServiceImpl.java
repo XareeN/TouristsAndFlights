@@ -2,10 +2,12 @@ package com.treative.treative.service;
 
 import com.treative.treative.dao.FlightDAO;
 import com.treative.treative.model.Flight;
+import com.treative.treative.model.Tourist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +17,9 @@ public class FlightServiceImpl implements FlightService {
     private FlightDAO flightDAO;
 
     @Autowired
+    private TouristService touristService;
+
+    @Autowired
     public FlightServiceImpl(FlightDAO flightDAO) {
         this.flightDAO = flightDAO;
     }
@@ -22,6 +27,32 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public List<Flight> getFlightsByType(String filterType, String filterValue) {
         List<Flight> flights = flightDAO.findAll();
+
+        if (filterType != null){
+            switch (filterType){
+                case "id":
+                    flights = Collections.singletonList(flightDAO.findFlightsByIdEquals(filterValue));
+                    break;
+                case "arrival":
+                    flights = flightDAO.findFlightsByArrivalContaining(filterValue);
+                    break;
+                case "departure":
+                    flights = flightDAO.findFlightsByDepartureContaining(filterValue);
+                    break;
+                case "seatCount":
+                    flights = flightDAO.findFlightsBySeatCountLike(Integer.parseInt(filterValue));
+                    break;
+                case "touristList":
+                    Tourist touristById = touristService.getTouristById(filterValue);
+                    flights = flightDAO.findFlightsByTouristListContaining(touristById);
+                    break;
+                case "ticketPrice":
+                    flights = flightDAO.findFlightsByTicketPriceLike(Double.parseDouble(filterValue));
+                    break;
+                default:
+                    throw new IllegalArgumentException("Enter valid parameter");
+            }
+        }
         return flights;
     }
 
